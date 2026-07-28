@@ -1,0 +1,25 @@
+# Dependency directories
+node_modules/
+fe/node_modules/
+be/node_modules/
+
+# Local env files (contain MongoDB passwords)
+.env
+be/.env
+fe/.env
+
+# Build outputs
+fe/dist/
+
+# System files
+.DS_Store
+Thumbs.db
+CVS
+.svn
+.idea
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

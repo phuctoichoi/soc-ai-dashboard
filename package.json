@@ -1,0 +1,15 @@
+{
+  "name": "soc-ai-dashboard-root",
+  "version": "1.0.0",
+  "description": "Root of the React-based SOC-AI HITL Dashboard project",
+  "private": true,
+  "scripts": {
+    "install-fe": "npm install --prefix fe",
+    "install-be": "npm install --prefix be",
+    "install-all": "npm install && npm run install-fe && npm run install-be",
+    "dev": "concurrently \"npm run dev --prefix fe\" \"npm run start --prefix be\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
