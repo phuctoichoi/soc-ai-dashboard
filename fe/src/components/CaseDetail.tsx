@@ -248,7 +248,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 </div>
               </div>
             ) : (
-              <div style={styles.noAiData}>Chưa có thông tin phân tích từ AI.</div>
+              <div style={styles.noAiData}>{t('no_ai_analysis')}</div>
             )}
           </div>
         </div>
@@ -319,10 +319,10 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
         {/* If case has been reviewed, display review result */}
         {(activeCase.status === 'Approved' || activeCase.status === 'Rejected') && activeCase.hitl && (
           <div className="card" style={styles.reviewResultCard}>
-            <h3 style={styles.cardTitle}>Kết quả duyệt HITL</h3>
+            <h3 style={styles.cardTitle}>{t('hitl_result_title')}</h3>
             <div style={styles.indicatorGrid}>
               <div style={styles.indicatorItem}>
-                <span style={styles.indicatorLabel}>Quyết định</span>
+                <span style={styles.indicatorLabel}>{t('decision_label')}</span>
                 <span style={{ 
                   fontWeight: 700, 
                   color: activeCase.status === 'Approved' ? 'var(--color-approved)' : 'var(--color-rejected)' 
@@ -331,23 +331,23 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 </span>
               </div>
               <div style={styles.indicatorItem}>
-                <span style={styles.indicatorLabel}>Người duyệt</span>
+                <span style={styles.indicatorLabel}>{t('reviewer_label')}</span>
                 <span>{activeCase.hitl.reviewer || 'N/A'}</span>
               </div>
               <div style={styles.indicatorItem}>
-                <span style={styles.indicatorLabel}>Thời gian duyệt</span>
+                <span style={styles.indicatorLabel}>{t('reviewed_time_label')}</span>
                 <span>{formatDate(activeCase.hitl.reviewed_at || '')}</span>
               </div>
             </div>
             {activeCase.hitl.edited_recommendation && (
               <div style={styles.resultField}>
-                <span style={styles.resultLabel}>Khuyến nghị đã hiệu chỉnh:</span>
+                <span style={styles.resultLabel}>{t('edited_rec_label')}</span>
                 <p style={styles.resultValueText}>{activeCase.hitl.edited_recommendation}</p>
               </div>
             )}
             {activeCase.hitl.feedback && (
               <div style={styles.resultField}>
-                <span style={styles.resultLabel}>Ý kiến phản hồi:</span>
+                <span style={styles.resultLabel}>{t('feedback_label')}</span>
                 <p style={styles.resultValueText}>{activeCase.hitl.feedback}</p>
               </div>
             )}
@@ -365,7 +365,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
           
           <div style={styles.chatBox}>
             {chatHistory.length === 0 ? (
-              <p style={styles.chatPlaceholder}>Hỏi AI Assistant các thông tin sâu hơn về cảnh báo này (ví dụ: "Có kết nối mạng nào khả nghi không?", "CMD thực thi là gì?")</p>
+              <p style={styles.chatPlaceholder}>{t('chat_placeholder')}</p>
             ) : (
               chatHistory.map((msg, index) => (
                 <div 
@@ -393,13 +393,13 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
               type="text"
               className="input-text"
               style={styles.chatInput}
-              placeholder="Nhập câu hỏi của bạn..."
+              placeholder={t('chat_input_placeholder')}
               value={chatQuestion}
               onChange={(e) => setChatQuestion(e.target.value)}
               disabled={isChatLoading}
             />
             <button type="submit" className="btn btn-primary" style={styles.chatBtn} disabled={isChatLoading || !chatQuestion.trim()}>
-              Gửi
+              {t('chat_send')}
             </button>
           </form>
         </div>
@@ -434,7 +434,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 </div>
               ))
             ) : (
-              <div style={styles.noAudit}>Không có dữ liệu lịch sử.</div>
+              <div style={styles.noAudit}>{t('no_audit_trail')}</div>
             )}
           </div>
         </div>

@@ -48,7 +48,30 @@ type TranslationKey =
   | 'audit_action_hitl'
   | 'audit_action_requeue'
   | 'audit_action_fail'
-  | 'statistics';
+  | 'statistics'
+  // New translations keys
+  | 'no_ai_analysis'
+  | 'hitl_result_title'
+  | 'edited_rec_label'
+  | 'feedback_label'
+  | 'chat_placeholder'
+  | 'chat_input_placeholder'
+  | 'chat_send'
+  | 'no_audit_trail'
+  | 'decision_label'
+  | 'reviewer_label'
+  | 'reviewed_time_label'
+  | 'analytics_subtitle'
+  | 'total_alerts'
+  | 'hitl_approval_rate'
+  | 'ai_analysis_errors'
+  | 'status_distribution'
+  | 'ai_queue'
+  | 'failed_label'
+  | 'no_data'
+  | 'severity_distribution'
+  | 'no_ai_data_alert'
+  | 'alert_frequency';
 
 const translations: Record<Language, Record<TranslationKey, string>> = {
   vn: {
@@ -96,7 +119,30 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     audit_action_hitl: 'Quyết định của Analyst (HITL)',
     audit_action_requeue: 'Đưa lại vào hàng đợi AI',
     audit_action_fail: 'Lỗi phân tích AI',
-    statistics: 'Thống kê luồng dữ liệu'
+    statistics: 'Thống kê',
+    // New translations values (VN)
+    no_ai_analysis: 'Chưa có thông tin phân tích từ AI.',
+    hitl_result_title: 'Kết quả duyệt HITL',
+    edited_rec_label: 'Khuyến nghị đã hiệu chỉnh:',
+    feedback_label: 'Ý kiến phản hồi:',
+    chat_placeholder: 'Hỏi AI Assistant các thông tin sâu hơn về cảnh báo này (ví dụ: "Có kết nối mạng nào khả nghi không?", "CMD thực thi là gì?")',
+    chat_input_placeholder: 'Nhập câu hỏi của bạn...',
+    chat_send: 'Gửi',
+    no_audit_trail: 'Không có dữ liệu lịch sử.',
+    decision_label: 'Quyết định',
+    reviewer_label: 'Người duyệt',
+    reviewed_time_label: 'Thời gian duyệt',
+    analytics_subtitle: 'Tổng quan hiệu năng của hệ thống giám sát và phân tích AI',
+    total_alerts: 'TỔNG SỐ CẢNH BÁO',
+    hitl_approval_rate: 'TỶ LỆ PHÊ DUYỆT (HITL)',
+    ai_analysis_errors: 'LỖI PHÂN TÍCH AI',
+    status_distribution: 'Tỷ lệ phân bố Trạng thái',
+    ai_queue: 'Hàng đợi AI',
+    failed_label: 'Thất bại',
+    no_data: 'Không có dữ liệu',
+    severity_distribution: 'Phân bổ Mức độ nghiêm trọng (AI)',
+    no_ai_data_alert: 'Không có dữ liệu phân tích từ AI',
+    alert_frequency: 'Tần suất Alert tiếp nhận (8 giờ qua)'
   },
   en: {
     dashboard_title: 'SOC-AI CYBERSECURITY MONITORING SYSTEM (HITL)',
@@ -143,7 +189,30 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     audit_action_hitl: 'Analyst HITL Decision',
     audit_action_requeue: 'Re-queued for AI',
     audit_action_fail: 'AI Analysis Failed',
-    statistics: 'Pipeline Statistics'
+    statistics: 'Statistics',
+    // New translations values (EN)
+    no_ai_analysis: 'No AI analysis available.',
+    hitl_result_title: 'HITL Review Result',
+    edited_rec_label: 'Edited Recommendation:',
+    feedback_label: 'Feedback Comments:',
+    chat_placeholder: 'Ask AI Assistant for deeper details (e.g. "Any suspicious network connection?", "What is the command executed?")',
+    chat_input_placeholder: 'Type your question...',
+    chat_send: 'Send',
+    no_audit_trail: 'No history data available.',
+    decision_label: 'Decision',
+    reviewer_label: 'Reviewer',
+    reviewed_time_label: 'Reviewed Time',
+    analytics_subtitle: 'Overview of monitoring and AI analysis system performance',
+    total_alerts: 'TOTAL ALERTS',
+    hitl_approval_rate: 'HITL APPROVAL RATE',
+    ai_analysis_errors: 'AI ANALYSIS ERRORS',
+    status_distribution: 'Status Distribution',
+    ai_queue: 'AI Queue',
+    failed_label: 'Failed',
+    no_data: 'No data available',
+    severity_distribution: 'Severity Distribution (AI)',
+    no_ai_data_alert: 'No AI analysis data',
+    alert_frequency: 'Alert Ingestion Frequency (Last 8 Hours)'
   }
 };
 

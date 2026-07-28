@@ -62,14 +62,14 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({ cases }) => {
     <div style={styles.container}>
       <div style={styles.header}>
         <h2 style={styles.title}>{t('statistics')}</h2>
-        <p style={styles.subtitle}>Tổng quan hiệu năng của hệ thống giám sát và phân tích AI</p>
+        <p style={styles.subtitle}>{t('analytics_subtitle')}</p>
       </div>
 
       <div style={styles.scrollContent}>
         {/* Metric Cards Grid */}
         <div style={styles.gridMetrics}>
           <div className="card" style={styles.metricCard}>
-            <span style={styles.metricLabel}>TỔNG SỐ CẢNH BÁO</span>
+            <span style={styles.metricLabel}>{t('total_alerts')}</span>
             <span style={styles.metricValue}>{totalCases}</span>
             <span style={styles.metricSubText}>Alerts Ingested</span>
           </div>
@@ -77,17 +77,17 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({ cases }) => {
           <div className="card" style={{ ...styles.metricCard, borderLeft: '4px solid var(--color-waiting)' }}>
             <span style={styles.metricLabel}>{t('status_waiting').toUpperCase()}</span>
             <span style={{ ...styles.metricValue, color: 'var(--color-waiting)' }}>{waitingCount}</span>
-            <span style={styles.metricSubText}>Yêu cầu kiểm duyệt</span>
+            <span style={styles.metricSubText}>{t('status_waiting')}</span>
           </div>
 
           <div className="card" style={{ ...styles.metricCard, borderLeft: '4px solid var(--color-approved)' }}>
-            <span style={styles.metricLabel}>TỶ LỆ PHÊ DUYỆT (HITL)</span>
+            <span style={styles.metricLabel}>{t('hitl_approval_rate')}</span>
             <span style={{ ...styles.metricValue, color: 'var(--color-approved)' }}>{approvalRate}%</span>
             <span style={styles.metricSubText}>{approvedCount} approved / {reviewedTotal} reviewed</span>
           </div>
 
           <div className="card" style={{ ...styles.metricCard, borderLeft: '4px solid var(--color-failed)' }}>
-            <span style={styles.metricLabel}>LỖI PHÂN TÍCH AI</span>
+            <span style={styles.metricLabel}>{t('ai_analysis_errors')}</span>
             <span style={{ ...styles.metricValue, color: 'var(--color-failed)' }}>{failedCount}</span>
             <span style={styles.metricSubText}>Retry limit reached</span>
           </div>
@@ -98,17 +98,17 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({ cases }) => {
           
           {/* 1. Status Proportion Bar Chart */}
           <div className="card" style={styles.chartCard}>
-            <h3 style={styles.chartTitle}>Tỷ lệ phân bố Trạng thái</h3>
+            <h3 style={styles.chartTitle}>{t('status_distribution')}</h3>
             {totalCases > 0 ? (
               <div style={styles.proportionContainer}>
                 {/* Horizontal Stacked Bar */}
                 <div style={styles.progressBar}>
-                  <div style={{ ...styles.progressSegment, width: `${(waitingCount/totalCases)*100}%`, backgroundColor: 'var(--color-waiting)' }} title={`Chờ duyệt: ${waitingCount}`} />
-                  <div style={{ ...styles.progressSegment, width: `${(approvedCount/totalCases)*100}%`, backgroundColor: 'var(--color-approved)' }} title={`Phê duyệt: ${approvedCount}`} />
-                  <div style={{ ...styles.progressSegment, width: `${(rejectedCount/totalCases)*100}%`, backgroundColor: 'var(--color-rejected)' }} title={`Từ chối: ${rejectedCount}`} />
-                  <div style={{ ...styles.progressSegment, width: `${(queuedCount/totalCases)*100}%`, backgroundColor: 'var(--color-queued)' }} title={`Chờ AI: ${queuedCount}`} />
-                  <div style={{ ...styles.progressSegment, width: `${(suppressedCount/totalCases)*100}%`, backgroundColor: 'var(--color-suppressed)' }} title={`Triệt tiêu: ${suppressedCount}`} />
-                  <div style={{ ...styles.progressSegment, width: `${(failedCount/totalCases)*100}%`, backgroundColor: 'var(--color-failed)' }} title={`Thất bại: ${failedCount}`} />
+                  <div style={{ ...styles.progressSegment, width: `${(waitingCount/totalCases)*100}%`, backgroundColor: 'var(--color-waiting)' }} title={`${t('status_waiting')}: ${waitingCount}`} />
+                  <div style={{ ...styles.progressSegment, width: `${(approvedCount/totalCases)*100}%`, backgroundColor: 'var(--color-approved)' }} title={`${t('status_approved')}: ${approvedCount}`} />
+                  <div style={{ ...styles.progressSegment, width: `${(rejectedCount/totalCases)*100}%`, backgroundColor: 'var(--color-rejected)' }} title={`${t('status_rejected')}: ${rejectedCount}`} />
+                  <div style={{ ...styles.progressSegment, width: `${(queuedCount/totalCases)*100}%`, backgroundColor: 'var(--color-queued)' }} title={`${t('ai_queue')}: ${queuedCount}`} />
+                  <div style={{ ...styles.progressSegment, width: `${(suppressedCount/totalCases)*100}%`, backgroundColor: 'var(--color-suppressed)' }} title={`${t('status_suppressed')}: ${suppressedCount}`} />
+                  <div style={{ ...styles.progressSegment, width: `${(failedCount/totalCases)*100}%`, backgroundColor: 'var(--color-failed)' }} title={`${t('failed_label')}: ${failedCount}`} />
                 </div>
                 
                 {/* Legends */}
@@ -127,7 +127,7 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({ cases }) => {
                   </div>
                   <div style={styles.legendItem}>
                     <span style={{ ...styles.legendDot, backgroundColor: 'var(--color-queued)' }} />
-                    <span style={styles.legendText}>Hàng đợi AI: <strong>{queuedCount}</strong></span>
+                    <span style={styles.legendText}>{t('ai_queue')}: <strong>{queuedCount}</strong></span>
                   </div>
                   <div style={styles.legendItem}>
                     <span style={{ ...styles.legendDot, backgroundColor: 'var(--color-suppressed)' }} />
@@ -135,18 +135,18 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({ cases }) => {
                   </div>
                   <div style={styles.legendItem}>
                     <span style={{ ...styles.legendDot, backgroundColor: 'var(--color-failed)' }} />
-                    <span style={styles.legendText}>{t('status_failed')}: <strong>{failedCount}</strong></span>
+                    <span style={styles.legendText}>{t('failed_label')}: <strong>{failedCount}</strong></span>
                   </div>
                 </div>
               </div>
             ) : (
-              <div style={styles.noData}>Không có dữ liệu</div>
+              <div style={styles.noData}>{t('no_data')}</div>
             )}
           </div>
 
           {/* 2. Severity Bar Chart (SVG-based) */}
           <div className="card" style={styles.chartCard}>
-            <h3 style={styles.chartTitle}>Phân bổ Mức độ nghiêm trọng (AI)</h3>
+            <h3 style={styles.chartTitle}>{t('severity_distribution')}</h3>
             {highCount || mediumCount || lowCount ? (
               <div style={styles.svgContainer}>
                 <svg width="100%" height={barChartHeight} viewBox={`0 0 ${barChartWidth} ${barChartHeight}`}>
@@ -193,13 +193,13 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({ cases }) => {
                 </svg>
               </div>
             ) : (
-              <div style={styles.noData}>Không có dữ liệu phân tích từ AI</div>
+              <div style={styles.noData}>{t('no_ai_data_alert')}</div>
             )}
           </div>
 
           {/* 3. Trend Line Chart (SVG-based) */}
           <div className="card" style={{ ...styles.chartCard, gridColumn: 'span 2' }}>
-            <h3 style={styles.chartTitle}>Tần suất Alert tiếp nhận (8 giờ qua)</h3>
+            <h3 style={styles.chartTitle}>{t('alert_frequency')}</h3>
             <div style={styles.svgContainer}>
               <svg width="100%" height={lineChartHeight} viewBox={`0 0 ${lineChartWidth} ${lineChartHeight}`}>
                 {/* Horizontal grid lines */}
